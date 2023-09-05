@@ -1,0 +1,4 @@
+nyc.config.js
+node_modules/
+src/tests/
+build/
