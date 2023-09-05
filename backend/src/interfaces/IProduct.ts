@@ -1,5 +1,5 @@
 interface IProduct {
-  id?: number;
+  code?: number;
   name: string;
   costPrice: number;
   salesPrice: number;
