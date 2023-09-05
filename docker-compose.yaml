@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  db:
+    container_name: manager_products_db
+    image: mysql:8.0.23
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password123'
+    ports:
+      - 3306:3306
+    networks:
+      - manager_products_net
+
+networks: 
+  manager_products_net:
+    driver: bridge
