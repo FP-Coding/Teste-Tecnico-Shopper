@@ -1,15 +1,34 @@
 version: "3"
 
 services:
-  db:
-    container_name: manager_products_db
-    image: mysql:8.0.23
-    environment:
-      MYSQL_ROOT_PASSWORD: password123
-    ports:
-      - 3306:3306
-    networks:
-      - manager_products_net
+    backend: 
+      container_name: app_backend
+      build: ./backend
+      ports:
+        - 3001:3001
+      platform: linux/x86_64
+      working_dir: /app/backend
+      volumes: 
+        - ./backend/src:/app-backend/src
+      depends_on:
+        - db
+      environment:
+        - PORT=3001
+        - MYSQL_USER=root
+        - MYSQL_PASSWORD=password123
+        - MYSQL_HOST=db
+        - MYSQL_PORT=3306
+    db:
+      image: mysql:8.0.21
+      container_name: app_db
+      environment:
+        MYSQL_ROOT_PASSWORD: password123
+      ports:
+        - 3306:3306
+      networks:
+        - manager_products_net
+      cap_add:
+        - SYS_NICE  
 
 networks: 
   manager_products_net:
