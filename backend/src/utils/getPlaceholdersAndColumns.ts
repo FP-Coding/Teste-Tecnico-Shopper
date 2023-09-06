@@ -5,9 +5,10 @@ interface IPlaceholderAndColumns {
 }
 
 function getPlaceholdersAndColumns<T> (data: T): IPlaceholderAndColumns {
-	const columns = Object.keys(snakeize(data)).join(', ');
+	const fields = Object.keys(snakeize(data));
+	const columns = fields.join(', ');
 
-	const placeholders = Object.keys(data as object).map((_) => '?').join(', ');
+	const placeholders = fields.map((_) => '?').join(', ');
 
 	return { columns, placeholders };
 }
