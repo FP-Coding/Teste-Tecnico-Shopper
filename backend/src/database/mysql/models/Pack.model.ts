@@ -3,10 +3,10 @@ import Product from './Product.model';
 import db from '.';
 
 class Pack extends Model {
-	declare readonly code: number;
-	declare name: string;
-	declare costPrice: number;
-	declare salesPrice: number;
+	declare readonly id: number;
+	declare packId: number;
+	declare productId: number;
+	declare qty: number;
 }
 
 Pack.init({
