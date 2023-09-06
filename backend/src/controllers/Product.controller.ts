@@ -12,14 +12,17 @@ class ProductController implements SimpleController {
 	async create(req: Request, res: Response, _next: NextFunction): Promise<void | Response> {
 		const data = req.body;
 		const newProduct = await this._service.create(data);
-		return res.status(200).json(newProduct);
+		return res.status(201).json(newProduct);
 	}
-	async list(req: Request, res: Response, next: NextFunction): Promise<void | Response> {
-		throw new Error('Method not implemented.');
+	async list(_req: Request, res: Response, _next: NextFunction): Promise<void | Response> {
+		const products = await this._service.list();
+		return res.status(200).json(products);
 	}
-	async find(req: Request, res: Response, next: NextFunction): Promise<void | Response> {
-		throw new Error('Method not implemented.');
+	async find(req: Request, res: Response, _next: NextFunction): Promise<void | Response> {
+		const { id } = req.params;
+		const product = await this._service.find(Number(id));
+		return res.status(200).json(product);
 	}
 }
 
-export default ProductController;
+export default new ProductController();
