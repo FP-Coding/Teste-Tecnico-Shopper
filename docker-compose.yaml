@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-    backend: 
+    api: 
       container_name: app_backend
       build: ./backend
       ports:
@@ -13,11 +13,11 @@ services:
       depends_on:
         - db
       environment:
-        - PORT=3001
-        - MYSQL_USER=root
-        - MYSQL_PASSWORD=password123
         - MYSQL_HOST=db
-        - MYSQL_PORT=3306
+      env_file:
+        - ./backend/.env
+      networks:
+        - manager_products_net
     db:
       image: mysql:8.0.21
       container_name: app_db
@@ -26,9 +26,7 @@ services:
       ports:
         - 3306:3306
       networks:
-        - manager_products_net
-      cap_add:
-        - SYS_NICE  
+        - manager_products_net 
 
 networks: 
   manager_products_net:
