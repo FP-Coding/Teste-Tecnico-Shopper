@@ -6,7 +6,9 @@ export interface SimpleController {
   find(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
 }
 
-export interface Controller extends SimpleController {
+interface IController extends SimpleController {
   update(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
   delete(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
 }
+
+export default IController;
