@@ -6,7 +6,7 @@ class Pack extends Model {
 	declare readonly code: number;
 	declare name: string;
 	declare costPrice: number;
-	declare salesPrice: string;
+	declare salesPrice: number;
 }
 
 Pack.init({
@@ -40,8 +40,8 @@ Pack.init({
 	underscored: true,
 	sequelize: db,
 	timestamps: false,
-	modelName: 'Product',
-	tableName: 'products'
+	modelName: 'Pack',
+	tableName: 'packs'
 });
 
 Product.belongsTo(Pack, { foreignKey: 'packId', as: 'pack' });
