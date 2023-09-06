@@ -4,9 +4,12 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
+    "predev": "npm run db:reset",
     "dev": "ts-node-dev ."
   },
   "keywords": [],
@@ -15,10 +18,13 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.17",
+    "@types/joi": "^17.2.3",
     "@types/node": "^18.17.1",
+    "@types/sequelize": "^4.28.15",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
     "eslint": "^8.48.0",
+    "sequelize-cli": "^6.6.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "4.4"
   },
@@ -26,6 +32,8 @@
     "camelize-snakeize-ts": "^3.1.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mysql2": "^2.3.3"
+    "joi": "^17.10.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.32.1"
   }
 }
