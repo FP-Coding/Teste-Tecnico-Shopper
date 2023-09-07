@@ -28,8 +28,13 @@ class ProductController implements IController {
 	}
 	
 	async update(req: Request, res: Response, _next: NextFunction): Promise<void | Response> {
-		const { id } = req.params;
 		const data = req.body;
+		if (Array.isArray(data)) {
+			const updatedPromises = data.map(({ code, ...product}: IProduct) => this._service.update(code, product));
+			const updatedProducts = await Promise.all(updatedPromises);
+			return res.status(200).json(updatedProducts);
+		}
+		const { id } = req.params;
 		const updatedProduct = await this._service.update(Number(id), data);
 		return res.status(204).json(updatedProduct);
 	}
