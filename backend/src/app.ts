@@ -9,17 +9,16 @@ const app = express();
 
 app.use(express.json());
 
-app.put('/product/:id', (req: Request, res: Response, next: NextFunction) => ProductController.update(req, res, next));
-app.delete('/product/:id', (req: Request, res: Response, next: NextFunction) => ProductController.delete(req, res, next)); 
-app.get('/product/:id', (req: Request, res: Response, next: NextFunction) => ProductController.find(req, res, next)); 
-app.get('/product', (req: Request, res: Response, next: NextFunction) => ProductController.list(req, res, next)); 
-app.post('/product', (req: Request, res: Response, next: NextFunction) => ProductController.create(req, res, next));
+app.patch('/products/price/:id', (req: Request, res: Response, next: NextFunction) => ProductController.update(req, res, next));
+app.patch('/products/price/', (req: Request, res: Response, next: NextFunction) => ProductController.update(req, res, next));
+app.delete('/products/:id', (req: Request, res: Response, next: NextFunction) => ProductController.delete(req, res, next)); 
+app.get('/products/:id', (req: Request, res: Response, next: NextFunction) => ProductController.find(req, res, next)); 
+app.get('/products', (req: Request, res: Response, next: NextFunction) => ProductController.list(req, res, next)); 
+app.post('/products', (req: Request, res: Response, next: NextFunction) => ProductController.create(req, res, next));
 
-app.put('/pack/:id', (req: Request, res: Response, next: NextFunction) => PackController.update(req, res, next));
-app.delete('/pack/:id', (req: Request, res: Response, next: NextFunction) => PackController.delete(req, res, next)); 
-app.get('/pack/:id', (req: Request, res: Response, next: NextFunction) => PackController.find(req, res, next)); 
-app.get('/pack', (req: Request, res: Response, next: NextFunction) => PackController.list(req, res, next));
-app.post('/pack', (req: Request, res: Response, next: NextFunction) => PackController.create(req, res, next));
+app.get('/packs/:packId', (req: Request, res: Response, next: NextFunction) => PackController.find(req, res, next)); 
+app.get('/packs', (req: Request, res: Response, next: NextFunction) => PackController.list(req, res, next));
+app.post('/packs', (req: Request, res: Response, next: NextFunction) => PackController.create(req, res, next));
 
 app.use(errorHandler);
 
