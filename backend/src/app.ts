@@ -15,8 +15,9 @@ app.get('/product/:id', (req: Request, res: Response, next: NextFunction) => Pro
 app.get('/product', (req: Request, res: Response, next: NextFunction) => ProductController.list(req, res, next)); 
 app.post('/product', (req: Request, res: Response, next: NextFunction) => ProductController.create(req, res, next));
 
-
-app.get('/pack/:id', (req: Request, res: Response, next: NextFunction) => PackController.find(req, res, next));
+app.put('/pack/:id', (req: Request, res: Response, next: NextFunction) => PackController.update(req, res, next));
+app.delete('/pack/:id', (req: Request, res: Response, next: NextFunction) => PackController.delete(req, res, next)); 
+app.get('/pack/:id', (req: Request, res: Response, next: NextFunction) => PackController.find(req, res, next)); 
 app.get('/pack', (req: Request, res: Response, next: NextFunction) => PackController.list(req, res, next));
 app.post('/pack', (req: Request, res: Response, next: NextFunction) => PackController.create(req, res, next));
 
