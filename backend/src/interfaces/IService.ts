@@ -5,8 +5,8 @@ export interface SimpleService<T> {
 }
 
 interface Service<T> extends SimpleService<T> {
-  update(id: number, obj: T): Promise<void>;
-  delete(id: number): Promise<void>;
+  update(id: number, obj: Partial<T>): Promise<boolean>;
+  delete(id: number): Promise<boolean>;
 }
 
 export default Service;
