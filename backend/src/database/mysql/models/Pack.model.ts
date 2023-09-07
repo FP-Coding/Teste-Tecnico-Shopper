@@ -1,4 +1,4 @@
-import { Model, BIGINT  } from 'sequelize';
+import { Model, BIGINT } from 'sequelize';
 import Product from './Product.model';
 import db from '.';
 
@@ -44,9 +44,16 @@ Pack.init({
 	tableName: 'packs'
 });
 
-Product.belongsTo(Pack, { foreignKey: 'packId', as: 'pack' });
+Product.belongsTo(Pack,{
+	targetKey: 'productId',
+	foreignKey: 'code'
+});
 
-Pack.hasMany(Product, { foreignKey: 'productId', as: 'products' });
+Pack.hasMany(Product,{
+	foreignKey: 'code',
+	sourceKey: 'productId'
+});
+
 
 
 export default Pack;
