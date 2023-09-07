@@ -1,35 +1,31 @@
 import { ModelStatic } from 'sequelize';
-import Service from '../interfaces/IService';
+import { SimpleService } from '../interfaces/IService';
 import IPack from '../interfaces/IPack';
 import PackModel from '../database/mysql/models/Pack.model';
-import ProductModel from '../database/mysql/models/Product.model';
+import { validateId, validatePackFields } from './validators/validateFields';
 
-class PackService implements Service<IPack> {
+class PackService implements SimpleService<IPack> {
 	private _model: ModelStatic<PackModel>;
 	constructor(model: ModelStatic<PackModel> = PackModel) {
 		this._model = model;
 	}
+
 	async create(data: Omit<IPack, 'id'>): Promise<IPack> {
+		validatePackFields(data);
 		const newPack = await this._model.create(data); 
 		return newPack;
 	}
+
 	async list(): Promise<IPack[]> {
-		const packs = await this._model.findAll({ include: [{ model: ProductModel, as: 'Products' }]});
+		const packs = await this._model.findAll();
 		return packs;
 	}
-	async find(id: number): Promise<IPack | null> {
-		const pack = await this._model.findByPk(id);
+
+	async find(packId: number): Promise<IPack | IPack[] | null> {
+		validateId(packId);
+		const pack = await this._model.findAll({ where: { packId} });
 		return pack;
 	}
-	async update(id: number, data: Partial<IPack>): Promise<boolean> {
-		const [affectedRows] = await this._model.update(data, { where: { id } });
-		return affectedRows !== 0;
-	}
-	async delete(id: number): Promise<boolean> {
-		const affectedRows = await this._model.destroy({ where: { id } });
-		return affectedRows !== 0;
-	}
-
 }
 
 export default PackService;
