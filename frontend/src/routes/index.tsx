@@ -6,7 +6,7 @@ function RoutesApp() {
     <Routes>
       <Route path="/" Component={Products} />
     </Routes>
-  )
+  );
 }
 
 export default RoutesApp;
