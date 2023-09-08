@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import 'express-async-errors';
+import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
 import ProductController from './controllers/Product.controller';
 import PackController from './controllers/Pack.controller';
@@ -8,6 +9,7 @@ import errorHandler from './middlewares/ErrorHandler';
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.patch('/products/price/:id', (req: Request, res: Response, next: NextFunction) => ProductController.update(req, res, next));
 app.patch('/products/price/', (req: Request, res: Response, next: NextFunction) => ProductController.update(req, res, next));
