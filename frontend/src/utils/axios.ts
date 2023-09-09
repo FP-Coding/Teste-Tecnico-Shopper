@@ -10,7 +10,7 @@ export const postRequest = async <T>(endpoint: string, body: T) => {
 };
 
 export const getRequest = async (endpoint: string) => {
-  const { data } = await api.post(endpoint);
+  const { data } = await api.get(endpoint);
   return data;
 };
 
