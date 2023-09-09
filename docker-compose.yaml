@@ -1,15 +1,32 @@
 version: "3"
 
 services:
+    app: 
+      build: ./frontend
+      container_name: app_frontend
+      ports:
+        - 5173:5173
+      platform: linux/x86_64
+      working_dir: /app/frontend
+      volumes: 
+        - ./frontend/src:/app/frontend/src
+      restart: always
+      depends_on:
+        - api
+      env_file:
+        - ./frontend/.env
+      networks:
+        - manager_products_net
     api: 
-      container_name: app_backend
       build: ./backend
+      container_name: app_backend
       ports:
         - 3001:3001
       platform: linux/x86_64
       working_dir: /app/backend
       volumes: 
-        - ./backend/src:/app-backend/src
+        - ./backend/src:/app/backend/src
+      restart: always
       depends_on:
         - db
       environment:
@@ -23,6 +40,7 @@ services:
       container_name: app_db
       environment:
         MYSQL_ROOT_PASSWORD: password123
+      restart: always
       ports:
         - 3306:3306
       networks:
