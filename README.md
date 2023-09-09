@@ -25,7 +25,6 @@ Projeto realizado para avaliação de proficiência técnica para empresa Shoppe
   - `Sequelize`
   - `Node.js`
   - `Express`
-  - `React`
   - `Typescript`
   - `Cors`
   - `Joi`
