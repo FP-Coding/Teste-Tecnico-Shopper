@@ -9,7 +9,7 @@
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-    "predev": "npm run db:reset",
+    "predev": "npm run build && npm run db:reset",
     "dev": "ts-node-dev ."
   },
   "keywords": [],
