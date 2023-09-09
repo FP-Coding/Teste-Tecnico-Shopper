@@ -25,7 +25,6 @@ Projeto realizado para avaliação de proficiência técnica para empresa Shoppe
   - `Sequelize`
   - `Node.js`
   - `Express`
-  - `React`
   - `Typescript`
   - `Cors`
   - `Joi`
@@ -38,6 +37,7 @@ Projeto realizado para avaliação de proficiência técnica para empresa Shoppe
 
   ** :warning: Antes de começar, seu docker-compose precisa estar na versão 1.29 ou superior. [Veja aqui](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt) ou [na documentação](https://docs.docker.com/compose/install/) como instalá-lo. No primeiro artigo, você pode substituir onde está com `1.26.0` por `1.29.2`.**
 
+- [ ] `renomeie os arquivos .env.example para .env`
 - [ ] `docker-compose up -d --build`
 
 </details>
